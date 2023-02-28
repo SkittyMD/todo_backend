@@ -4,7 +4,7 @@ import { Guid } from "guid-ts";
 import ITask from '../interfaces/ITask';
 
 class FileDB {
-    data: object[]
+    data: ITask[]
     path: string
     constructor() {
         this.data = []
