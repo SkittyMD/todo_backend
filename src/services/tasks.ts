@@ -10,7 +10,7 @@ class TasksService {
         const data: object | undefined = db.addTask(task)
         return { id: Object.keys(data)[0] }
     }
-    changeTask = (id: string, task: object): object => {
+    changeTask = (id: string, task: IRequest): object => {
         db.changeTask(id, task)
         return {
             message: 'task was changed'
