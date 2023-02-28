@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises'
 import IRequest from "../interfaces/IRequest";
 import { Guid } from "guid-ts";
+import ITask from '../interfaces/ITask';
 
 class FileDB {
     data: object[]
@@ -24,10 +25,10 @@ class FileDB {
         }
     }
     getTask = () => {
-        const response: any = {}
+        const response: ITask = {}
         const data = JSON.parse(JSON.stringify(this.data))
-        data.forEach((el: any) => {
-            const key = Object.keys(el)[0]
+        data.forEach((el: ITask) => {
+            const key: string = Object.keys(el)[0]
             response[key] = el[key]
             if (Date.parse(new Date().toISOString()) > Date.parse(el[key].dateDeadline)) {
                 el[key].status = 'overdue'
@@ -54,7 +55,7 @@ class FileDB {
             console.log(err)
         }
     }
-    changeTask = async (id: string, task: any) => {
+    changeTask = async (id: string, task: object) => {
         try {
             const data = JSON.parse(JSON.stringify(this.data))
             const index = data.findIndex((el: object) => Object.keys(el)[0] === id)
